@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// 1. Importe as fontes que vamos usar do Google Fonts
+import { Inter, Lora } from "next/font/google";
 import "./globals.css";
-
-// 1. Importa as nossas novas peças de layout
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+// 2. Configure as fontes, associando-as a variáveis CSS
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const lora = Lora({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-lora",
+});
 
 export const metadata: Metadata = {
   title: "Elo Sapiens",
@@ -19,25 +24,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
-      {/* Estas classes do Tailwind são a chave para o "rodapé colado":
-        - flex: Ativa o Flexbox no corpo da página.
-        - flex-col: Organiza os filhos (Header, main, Footer) em uma coluna.
-        - min-h-screen: Garante que o body tenha no mínimo a altura da tela.
-      */}
-      <body className={`${inter.className} flex flex-col min-h-screen`}>
-        {/* 2. O Header aparece no topo de todas as páginas */}
+    // 3. Aplique as classes das variáveis de fonte ao elemento <html>.
+    //    Isso torna as variáveis --font-inter e --font-lora disponíveis em todo o CSS.
+    <html lang="pt-br" className={`${inter.variable} ${lora.variable}`}>
+      <body className="flex flex-col min-h-screen">
         <Header />
-
-        {/* A classe 'flex-grow' diz para o conteúdo principal esticar e ocupar
-            todo o espaço livre entre o Header e o Footer.
-        */}
-        <main className="flex-grow">
-          {children}{" "}
-          {/* Aqui é onde o conteúdo da página atual (page.tsx) entra */}
-        </main>
-
-        {/* 3. O Footer aparece no final de todas as páginas */}
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>
