@@ -1,6 +1,4 @@
 export function Footer() {
-  // Lógica JavaScript para pegar o ano atual dinamicamente.
-  // Isso garante que o ano no seu rodapé esteja sempre correto.
   const currentYear = new Date().getFullYear();
 
   return (

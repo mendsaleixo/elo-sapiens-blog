@@ -1,31 +1,27 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Article } from '@/data/mock-articles'; 
 
-// O "contrato" de props que o nosso cartão de artigo vai receber
 type ArticleCardProps = {
-  category: string;
-  title: string;
-  imageUrl: string;
-  slug: string; // O URL amigável do post, ex: "a-sabedoria-das-estrelas"
+  article: Article;
 };
 
-export function ArticleCard({ category, title, imageUrl, slug }: ArticleCardProps) {
+export function ArticleCard({ article }: ArticleCardProps) {
   return (
-    // O cartão inteiro é um link para a página do post
-    <Link href={`/posts/${slug}`} className="group block">
+    <Link href={`/posts/${article.slug}`} className="group block">
       <div className="overflow-hidden rounded-lg">
         <Image 
-          src={imageUrl} 
-          alt={`Imagem para o artigo ${title}`}
-          width={400} // Largura de exemplo
-          height={250} // Altura de exemplo
+          src={article.imageUrl} 
+          alt={`Imagem para o artigo ${article.title}`}
+          width={400}
+          height={250}
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out" 
         />
       </div>
       <div className="mt-4">
-        <p className="text-sm font-semibold text-musgo uppercase tracking-wider">{category}</p>
+        <p className="text-sm font-semibold text-musgo uppercase tracking-wider">{article.category}</p>
         <h3 className="mt-1 text-lg font-lora font-bold text-ardosia group-hover:text-musgo transition-colors">
-          {title}
+          {article.title}
         </h3>
       </div>
     </Link>

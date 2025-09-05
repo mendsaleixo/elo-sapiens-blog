@@ -9,8 +9,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "700"], // Definimos os pesos que vamos precisar
-  variable: "--font-lora", // Continuamos a usar a variável --font-lora
+  weight: ["400", "700"], 
+  variable: "--font-lora",
 });
 
 export const metadata: Metadata = {
