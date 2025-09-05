@@ -1,33 +1,48 @@
 import Link from "next/link";
+import Image from "next/image";
 
-// Definimos o nosso componente Header.
-// A palavra-chave 'export' permite que ele seja importado em outros arquivos.
 export function Header() {
   return (
-    // Estas classes do Tailwind criam o visual do cabeçalho:
-    // bg-slate-900: Fundo cinza-ardósia escuro.
-    // text-white: Texto branco.
-    // p-4: Padding (espaçamento interno).
     <header className="bg-slate-900 text-white p-4">
-      {/* 'container': Limita a largura do conteúdo em telas grandes.
-        'mx-auto': Centraliza o container.
-        'flex', 'justify-between', 'items-center': Comandos do Flexbox para alinhar o logo à esquerda e a navegação à direita.
-      */}
       <div className="container mx-auto flex justify-between items-center">
-        {/* O componente <Link> do Next.js é usado para navegação interna sem recarregar a página. */}
-        <Link href="/" className="text-xl font-bold">
-          Elo Sapiens
+        <Link href="/" className="flex items-center space-x-2">
+          <Image
+            src="/images/Elo_logo_light.svg"
+            alt="Logo Elo Sapiens"
+            width={32}
+            height={32}
+            priority
+          />
+          <span className="text-2xl font-lora font-bold"> ELO SAPIENS</span>
         </Link>
-        <nav>
-          <ul className="flex space-x-4">
+        <nav className="hidden md:flex">
+          <ul className="flex items-center space-x-6 text-sm font-medium tracking-wide">
             <li>
-              <Link href="/sobre" className="hover:text-slate-300">
-                Sobre
+              <Link href="/categorias/raizes" className="hover:text-musgo">
+                Raízes
               </Link>
             </li>
             <li>
-              <Link href="/categorias" className="hover:text-slate-300">
-                Categorias
+              <Link href="/categorias/horizontes" className="hover:text-musgo">
+                Horizontes
+              </Link>
+            </li>
+            <li>
+              <Link href="/categorias/simbiose" className="hover:text-musgo">
+                Simbiose
+              </Link>
+            </li>
+            <li>
+              <Link href="/categorias/prisma" className="hover:text-musgo">
+                Prisma
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/sobre"
+                className="border-l border-pedra/30 pl-6 hover:text-musgo"
+              >
+                Sobre
               </Link>
             </li>
           </ul>

@@ -1,26 +1,102 @@
-export default function HomePage() {
-  return (
-    // 'container' e 'mx-auto' centram o conteúdo horizontalmente.
-    // 'px-4' adiciona um espaçamento nas laterais para telas pequenas.
-    // 'py-12' e 'md:py-20' adicionam um espaçamento vertical generoso, maior em telas médias (md) ou maiores.
-    <main className="container mx-auto px-4 py-12 md:py-20 text-center">
-      {/* 'text-4xl' define o tamanho da fonte.
-        'md:text-5xl' aumenta o tamanho em telas médias ou maiores.
-        'font-bold' aplica negrito.
-        'tracking-tight' deixa o espaço entre as letras um pouco mais justo, um detalhe de design.
-      */}
-      <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-        Bem-vindo ao Elo Sapiens
-      </h1>
+import Link from "next/link";
+import Image from "next/image";
+import { ArticleCard } from "@/components/ArticleCard";
 
-      {/* 'mt-4' adiciona uma margem no topo.
-        'text-lg' define o tamanho do texto.
-        'text-gray-600' usa uma cor padrão do Tailwind para texto secundário.
-        'max-w-2xl' limita a largura máxima do parágrafo para melhorar a legibilidade.
-      */}
-      <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-        Explorando as conexões que definem a jornada humana.
-      </p>
-    </main>
+const articles = [
+  {
+    slug: "astronomia-ancestral",
+    category: "Simbiose",
+    title: "A Sabedoria das Estrelas e a Exploração Espacial",
+    imageUrl:
+      "https://images.unsplash.com/photo-1534298372333-31b3c8f8b788?q=80&w=2070",
+  },
+  {
+    slug: "ia-na-natureza",
+    category: "Horizontes",
+    title: "Inteligência Artificial Inspirada na Natureza",
+    imageUrl:
+      "https://images.unsplash.com/photo-1597733336794-12d05021d510?q=80&w=1974",
+  },
+  {
+    slug: "arquitetura-sustentavel",
+    category: "Raízes",
+    title: "As Lições da Arquitetura Vernacular",
+    imageUrl:
+      "https://images.unsplash.com/photo-1562953249-b32d034a742f?q=80&w=2070",
+  },
+  {
+    slug: "o-futuro-da-comida",
+    category: "Prisma",
+    title: "Da Fazenda Vertical ao Laboratório: O Futuro da Alimentação",
+    imageUrl:
+      "https://images.unsplash.com/photo-1620706857373-21b92a933a27?q=80&w=2127",
+  },
+  {
+    slug: "biomimetica-inovacao",
+    category: "Simbiose",
+    title: "Biomimética: Inovação Copiada da Natureza",
+    imageUrl:
+      "https://images.unsplash.com/photo-1455156218412-7c7a52b1b3b2?q=80&w=2070",
+  },
+  {
+    slug: "computacao-quantica",
+    category: "Horizontes",
+    title: "Computação Quântica: A Próxima Fronteira",
+    imageUrl:
+      "https://images.unsplash.com/photo-1532187643623-dbf26734177c?q=80&w=1964",
+  },
+];
+
+export default function HomePage() {
+  // Pegamos o primeiro artigo para ser o nosso destaque na seção Hero
+  const heroArticle = articles[0];
+  // Pegamos o resto dos artigos para a grelha de "Recentes"
+  const recentArticles = articles.slice(1);
+
+  return (
+    <div className="container mx-auto px-4">
+      <section className="relative w-full h-[60vh] max-h-[600px] rounded-lg overflow-hidden my-8">
+        <Image
+          src="/images/img_post1.png"
+          alt="Observatório no Deserto do Atacama"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        {/* Sobreposição Escura para legibilidade */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+        {/* Conteúdo de Texto */}
+        <div className="relative h-full flex flex-col justify-end p-8 md:p-12 text-white">
+          <h2 className="text-3xl md:text-5xl font-lora font-bold max-w-3xl leading-tight">
+            {heroArticle.title}
+          </h2>
+          <Link
+            href={`/posts/${heroArticle.slug}`}
+            className="mt-4 font-semibold inline-block text-lg hover:underline w-fit"
+          >
+            Leia Mais →
+          </Link>
+        </div>
+      </section>
+
+      {/* --- Seção de Artigos Recentes --- */}
+      <section className="my-16">
+        <h2 className="text-3xl font-lora font-bold border-b-2 border-musgo/50 pb-2 mb-8">
+          Artigos Recentes
+        </h2>
+        {/* Grelha de Artigos Responsiva */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {recentArticles.map((article) => (
+            <ArticleCard
+              key={article.slug}
+              slug={article.slug}
+              category={article.category}
+              title={article.title}
+              imageUrl={article.imageUrl}
+            />
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }

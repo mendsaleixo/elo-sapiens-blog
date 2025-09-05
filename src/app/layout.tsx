@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-// 1. Importe as fontes que vamos usar do Google Fonts
-import { Inter, Lora } from "next/font/google";
+
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-// 2. Configure as fontes, associando-as a variáveis CSS
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const lora = Lora({
+
+const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-lora",
+  weight: ["400", "700"], // Definimos os pesos que vamos precisar
+  variable: "--font-lora", // Continuamos a usar a variável --font-lora
 });
 
 export const metadata: Metadata = {
@@ -24,9 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // 3. Aplique as classes das variáveis de fonte ao elemento <html>.
-    //    Isso torna as variáveis --font-inter e --font-lora disponíveis em todo o CSS.
-    <html lang="pt-br" className={`${inter.variable} ${lora.variable}`}>
+
+    <html lang="pt-br" className={`${inter.variable} ${poppins.variable}`}>
       <body className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow">{children}</main>
