@@ -47,3 +47,7 @@ export const articles: Article[] = [
     imageUrl: 'https://images.unsplash.com/photo-1532187643623-dbf26734177c?q=80&w=1964' 
   },
 ];
+
+export function getArticleBySlug(slug: string): Article | undefined {
+  return articles.find(article => article.slug === slug);
+}

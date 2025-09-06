@@ -3,20 +3,23 @@ import Image from "next/image";
 
 export function Header() {
   return (
-    <header className="bg-slate-900 text-white p-4">
+    <header
+      className="bg-slate-900 text-white p-2
+    "
+    >
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center space-x-2">
           <Image
             src="/images/Elo_logo_light.svg"
             alt="Logo Elo Sapiens"
-            width={32}
-            height={32}
+            width={72}
+            height={52}
             priority
           />
-          <span className="text-2xl font-lora font-bold"> ELO SAPIENS</span>
+          <span className="text-3xl font-lora font-bold"> ELO SAPIENS</span>
         </Link>
         <nav className="hidden md:flex">
-          <ul className="flex items-center space-x-6 text-sm font-medium tracking-wide">
+          <ul className="flex items-center space-x-6 text-xl font-medium tracking-wide">
             <li>
               <Link href="/categorias/raizes" className="hover:text-musgo">
                 Raízes
